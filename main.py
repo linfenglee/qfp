@@ -1,16 +1,30 @@
-# This is a sample Python script.
+from sp.base import (
+    MarketInfo, ModelInfo,
+    BSContractInfo,
+    TGContractInfo,
+    TXContractInfo,
+    ACContractInfo,
+    FHContractInfo
+)
+from sp.sbp.sbpricer import SBPricer
+from sp.tgp.tgpricer import TGPricer
+from sp.txp.txpricer import TXPricer
+from sp.acp.acpricer import ACPricer
+from sp.fhp.fhpricer import FHPricer
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    market_data = MarketInfo()
+    # contract_data = TGContractInfo()
+    # contract_data = TXContractInfo()
+    # contract_data = ACContractInfo(modified=False)
+    contract_data = FHContractInfo()
+    model_data = ModelInfo()
+
+    # pricer = TGPricer(market_data, contract_data, model_data)
+    # pricer = TXPricer(market_data, contract_data, model_data)
+    # pricer = ACPricer(market_data, contract_data, model_data)
+    pricer = FHPricer(market_data, contract_data, model_data)
+    pricer.run()
+
+

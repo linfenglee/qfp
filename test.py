@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sp.base import MarketInfo, ModelInfo, ContractInfo
+from sp.base import MarketInfo, ModelInfo, BSContractInfo
 from sp.sbp.sbpricer import SBPricer
 
 
@@ -13,7 +13,7 @@ if __name__ == "__main__":
         dividend=0.0
     )
 
-    contract_data = ContractInfo(
+    contract_data = BSContractInfo(
         coupon=0.15, strike=1.0,
         start_date=datetime(2022, 10, 1),
         end_date=datetime(2023, 10, 1),
@@ -25,7 +25,9 @@ if __name__ == "__main__":
         ),
         up_level=1.03, down_level=0.7
     )
-    model_data = ModelInfo(paths=50000, time_steps=3650, valuation_date=datetime(2023, 1, 9))
+    model_data = ModelInfo(
+        paths=50000, time_steps=3650, valuation_date=datetime(2023, 1, 9), end_date=datetime(2023, 10, 1)
+    )
 
     pricer = SBPricer(market_data, contract_data, model_data)
     pricer.run()
